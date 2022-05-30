@@ -1,1 +1,40 @@
 <p>avaleht works!</p>
+<div>Sõnaline muutuja</div>
+<div>56</div>
+<div>true</div>
+
+<br><br>
+
+<div *ngIf="numbriline > 1000">{{ s6naline }}</div>
+<div *ngIf="kahendV22rtus">{{ postiindeks }}</div>
+<div>{{ numbriline }}</div>
+<div>{{ kahendV22rtus }}</div>
+
+<br><br>
+
+<button (click)="muudaS6nalineV22rtus()">Muuda sõnalise muutuja väärtust</button>
+
+<button (click)="muudaS6nalineV22rtusTagasi()">Muuda sõnalise muutuja väärtus tagasi</button>
+
+<button (click)="muudaNumbrilineV22rtus()">Muuda numbrilise muutuja väärtust</button>
+
+<button (click)="muudaNumbrilineV22rtusTagasi()">Muuda numbrilise muutuja väärtus tagasi</button>
+
+<button (click)="aktiivseks()">Muuda aktiivseks</button>
+
+<button (click)="mitteaktiivseks()">Muuda mitteaktiivseks</button>
+
+<button (click)="korrutaNumbrilineKahega()">Korruta kahega</button>
+
+<button (click)="muudaAktiivset()">Muuda aktiivset</button>
+
+<!-- 
+  ctrl + ä --- nii HTML-s kui .ts failis kommentaar
+  file -> preferences -> color theme -> Dark+
+
+  tumesinine - tääg (väljakuvatava liik)
+  helesinine - HTML atribuut (annab sellele täägile omadusi)
+  kollane - funktsioon
+  valge - kasutajale kuvatav
+  oranž - jutumärkides väärtused (CSS, routerLink, tüüp)
+-->

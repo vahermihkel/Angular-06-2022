@@ -10,6 +10,7 @@ export class OstukorvComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("läksin ostukorvi komponenti");
   }
 
 }
