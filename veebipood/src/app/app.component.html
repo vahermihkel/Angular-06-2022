@@ -5,9 +5,15 @@ tekst2
 <!-- ctrl + ä kommentaari jaoks -->
 <!-- routerLink="/" suunab meid localhost:4200/
                     https//www.delfi.ee/ -->
+<div>Lehe keel: {{programmiKeel}}</div>
+<button (click)="valiKeel('EE')">Eesti keel</button>
+<button (click)="valiKeel('EN')">Inglise keel</button>
+<button (click)="valiKeel('RU')">Vene keel</button>
+<br>
 <button routerLink="/">AVALEHELE</button>
 <!-- routerLink="/ostukorv" suunab meid localhost:4200/ostukorv
                     https//www.delfi.ee/ostukorv -->
 <button routerLink="/ostukorv">OSTUKORVI</button>
 <button routerLink="/lisa-toode">LISA TOODE</button>
+<button routerLink="/poed">POED</button>
 <router-outlet></router-outlet>
