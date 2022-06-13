@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./koduleht.component.css']
 })
 export class KodulehtComponent implements OnInit {
-  viimatiLisatudToode = localStorage.getItem("toode");
-  tooted: any[] = [];
+  viimatiLisatudToode = localStorage.getItem("toode"); // HTML-s kuvamiseks
+  tooted: any[] = []; // HTML-s kuvamiseks
 
   constructor() { }
 
@@ -17,5 +17,15 @@ export class KodulehtComponent implements OnInit {
       this.tooted = JSON.parse(lsTooted);
     }
   }
+
+  lisaOstukorvi(toode: string) {
+    let lsOstukorv = localStorage.getItem("ostukorv");
+    let ostukorv = [];
+    if (lsOstukorv !== null) {
+      ostukorv = JSON.parse(lsOstukorv);
+    }
+    ostukorv.push(toode);
+    localStorage.setItem("ostukorv", JSON.stringify(ostukorv));
+  } 
 
 }
