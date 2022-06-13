@@ -5,7 +5,9 @@
 <div (click)="lisaOstukorvi('Fanta')">Fanta</div>
 <div (click)="lisaOstukorvi('Fanta')">Fanta</div> -->
 
-<button (click)="tyhjenda()">Tühjenda</button>
+<div *ngIf="ostukorviTooted.length === 0">Ostukorv on tühi</div>
+<button *ngIf="ostukorviTooted.length > 0" (click)="tyhjenda()">Tühjenda</button>
+
 <div *ngFor="let t of ostukorviTooted">
   {{ t }}
   <button (click)="lisaOstukorvi(t)">+</button>

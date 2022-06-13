@@ -6,16 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ostukorv.component.css']
 })
 export class OstukorvComponent implements OnInit {
-  ostukorviTooted = ['Coca cola','Coca cola','Coca cola','Fanta','Fanta'];
+  ostukorviTooted: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log("läksin ostukorvi komponenti");
+    let lsOstukorv = localStorage.getItem("ostukorv");
+    if (lsOstukorv !== null) {
+      this.ostukorviTooted = JSON.parse(lsOstukorv);
+    }
   }
 
   lisaOstukorvi(toode: string) {
     this.ostukorviTooted.push(toode);
+    localStorage.setItem("ostukorv", JSON.stringify(this.ostukorviTooted));
   }
 
   eemaldaOstukorvist(toode: string) {
@@ -23,10 +27,12 @@ export class OstukorvComponent implements OnInit {
     this.ostukorviTooted.splice(index, 1);
     // toote listi sisese indexi
     // järjekorranumbri alusel kustutama ja pean ütlema täpselt 1tk
+    localStorage.setItem("ostukorv", JSON.stringify(this.ostukorviTooted));
   }
   
   tyhjenda() {
     this.ostukorviTooted = [];
+    localStorage.setItem("ostukorv", JSON.stringify(this.ostukorviTooted));
   }
 
 }
