@@ -6,8 +6,13 @@
 <div (click)="v6taYhendust('561412312')">Tasku keskus</div>
 <div (click)="v6taYhendust('565131232')">Ülemiste keskus</div> -->
 
-<div *ngFor="let keskuseNimi of keskused">{{keskuseNimi}} keskus</div>
+<!-- alt    pilti ei saada kätte
+arendajad pilti ei näe, saavad lugeda
+vaegnägijatele loetakse kood ette, nendele loetakse see koht -->
+<img src="assets/angular-logos.png" alt="Angulari logo">
+     <!-- keskused = [{},{},{}] -->
+<div *ngFor="let k of keskused" (click)="v6taYhendust(k)">{{k.nimi}} keskus</div>
 
 <br><br>
 
-<div *ngIf="v2ljakuvatavKontakt !== ''">Nende kontakt on: {{ v2ljakuvatavKontakt }}</div>
+<div *ngIf="v2ljakuvatavKontakt !== ''">Nende kontakt on: {{ v2ljakuvatavKontakt.tel }}, {{ v2ljakuvatavKontakt.aadress }}</div>

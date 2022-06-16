@@ -6,16 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./poed.component.css']
 })
 export class PoedComponent implements OnInit {
-  v2ljakuvatavKontakt = "";
-  keskused = ['Kristiine', 'Helsinki', 'Sfawrda'];
+  v2ljakuvatavKontakt: any;
+  //keskused = [];
+  keskused = [
+    {nimi:'Kristiine', tel:'+3725555555', aadress:'Tammsaare tee'},
+    {nimi:'Helsinki', tel:'+35831231', aadress: 'asdsa'},
+    {nimi:'Sfawrda', tel:'+33412312', aadress: 'dsa'}
+    ];
 
   constructor() { }
 
   ngOnInit(): void {
+    // this.keskused =
   }
 
-  v6taYhendust(telefoniNumber: string) {
-    this.v2ljakuvatavKontakt = telefoniNumber;
+  v6taYhendust(keskus: any) {
+    this.v2ljakuvatavKontakt = keskus;
   }
 
 }

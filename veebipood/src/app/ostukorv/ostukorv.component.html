@@ -9,10 +9,12 @@
 <button *ngIf="ostukorviTooted.length > 0" (click)="tyhjenda()">Tühjenda</button>
 
 <div *ngFor="let t of ostukorviTooted">
-  {{ t }}
+  {{ t.nimi }} - {{ t.hind }}
   <button (click)="lisaOstukorvi(t)">+</button>
   <button (click)="eemaldaOstukorvist(t)">x</button>
 </div>
+
+<div *ngIf="ostukorviTooted.length > 0">{{kogusumma}} €</div>
 
 <!-- kõigepealt kirjutan ise mingid tooted ostukorvi
 siis näitan, et teeks seda hoopis ngFor tsükli abil

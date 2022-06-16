@@ -1,4 +1,10 @@
 <br> <br>
-<label>Toote nimi</label> <br>
-<input (keyup.enter)="sisestaToode()" [(ngModel)]="uusToode" type="text"> <br>
-<button (click)="sisestaToode()">Sisesta</button> <br>
+<form (ngSubmit)="sisestaToode(lisamisevorm)" #lisamisevorm="ngForm">
+  <label>Toote nimi</label> <br>
+  <input ngModel name="nimi" type="text"> <br>
+  <label>Toote hind</label> <br>
+  <input ngModel name="hind" type="number"> <br>
+  <button>Sisesta</button> <br>
+</form>
+
+<!-- {nimi: "Coca cola", hind: 32} -->

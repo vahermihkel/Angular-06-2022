@@ -1,7 +1,5 @@
-<div>Viimati lisatud toode: {{ viimatiLisatudToode }}</div>
-
 <div *ngFor="let toode of tooted">
-  {{ toode }}
+  <span routerLink="toode/{{toode.nimi.toLowerCase().replaceAll(' ', '-')}}">{{ toode.nimi }} hinnaga {{ toode.hind }} €</span>
   <button (click)="lisaOstukorvi(toode)">Lisa ostukorvi</button>
 </div>
 
