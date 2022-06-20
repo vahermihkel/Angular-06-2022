@@ -7,17 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoedComponent implements OnInit {
   v2ljakuvatavKontakt: any;
-  //keskused = [];
-  keskused = [
-    {nimi:'Kristiine', tel:'+3725555555', aadress:'Tammsaare tee'},
-    {nimi:'Helsinki', tel:'+35831231', aadress: 'asdsa'},
-    {nimi:'Sfawrda', tel:'+33412312', aadress: 'dsa'}
-    ];
+  keskused: any[] = [];
+  // keskused = [
+  //   {nimi:'Kristiine', tel:'+3725555555', aadress:'Tammsaare tee'},
+  //   {nimi:'Helsinki', tel:'+35831231', aadress: 'asdsa'},
+  //   {nimi:'Sfawrda', tel:'+33412312', aadress: 'dsa'}
+  //   ];
 
   constructor() { }
 
   ngOnInit(): void {
-    // this.keskused =
+    let keskusedLS = localStorage.getItem("keskused");
+    if (keskusedLS !== null) {
+      this.keskused = JSON.parse(keskusedLS);
+      console.log("töötab");
+    }
   }
 
   v6taYhendust(keskus: any) {

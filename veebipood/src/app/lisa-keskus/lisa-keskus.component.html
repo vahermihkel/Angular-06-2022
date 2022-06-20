@@ -1,0 +1,16 @@
+<form (ngSubmit)="lisaKeskus(form)" #form="ngForm">
+  <label>Keskuse nimi</label> <br>
+  <input autocomplete="off" ngModel name="nimi" type="text" required> <br>
+  <label>Keskuse telefoninumber</label> <br>
+  <input ngModel name="tel" type="text" required> <br>
+  <label>Keskuse aadress</label> <br>
+  <input ngModel name="aadress" type="text" required> <br>
+  <button [disabled]="form.invalid">Sisesta keskus</button>
+</form>
+
+<!-- 
+{
+  nimi: "INPUT_SISSE_SISESTATU", 
+  tel: "INPUT_SISSE_SISESTATU", 
+  aadress: "INPUT_SISSE_SISESTATU"
+} -->

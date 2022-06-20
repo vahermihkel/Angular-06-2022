@@ -15,4 +15,6 @@ vaegnägijatele loetakse kood ette, nendele loetakse see koht -->
 
 <br><br>
 
-<div *ngIf="v2ljakuvatavKontakt !== ''">Nende kontakt on: {{ v2ljakuvatavKontakt.tel }}, {{ v2ljakuvatavKontakt.aadress }}</div>
+<div *ngIf="v2ljakuvatavKontakt !== undefined">
+     Nende kontakt on: {{ v2ljakuvatavKontakt.tel }}, {{ v2ljakuvatavKontakt.aadress }}
+</div>

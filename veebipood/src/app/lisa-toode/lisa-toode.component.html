@@ -1,10 +1,10 @@
 <br> <br>
 <form (ngSubmit)="sisestaToode(lisamisevorm)" #lisamisevorm="ngForm">
   <label>Toote nimi</label> <br>
-  <input ngModel name="nimi" type="text"> <br>
+  <input ngModel name="nimi" type="text" required> <br>
   <label>Toote hind</label> <br>
-  <input ngModel name="hind" type="number"> <br>
-  <button>Sisesta</button> <br>
+  <input ngModel name="hind" type="number" required> <br>
+  <button [disabled]="lisamisevorm.invalid">Sisesta</button> <br>
 </form>
 
 <!-- {nimi: "Coca cola", hind: 32} -->

@@ -19,13 +19,13 @@ export class OstukorvComponent implements OnInit {
     this.arvutaKogusumma();
   }
 
-  lisaOstukorvi(toode: string) {
+  lisaOstukorvi(toode: any) {
     this.ostukorviTooted.push(toode);
     localStorage.setItem("ostukorv", JSON.stringify(this.ostukorviTooted));
     this.arvutaKogusumma();
   }
 
-  eemaldaOstukorvist(toode: string) {
+  eemaldaOstukorvist(toode: any) {//{nimi: "", hind: 2}
     let index = this.ostukorviTooted.indexOf(toode); // järjekorranumbri leidmiseks
     this.ostukorviTooted.splice(index, 1);
     // toote listi sisese indexi
