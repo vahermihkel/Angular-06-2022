@@ -1,6 +1,6 @@
               <!--    [{nimi: "asda", hind: 3123},{2},{3}] -->
 <div *ngFor="let toode of tooted">
-  <span routerLink="toode/{{toode.nimi.toLowerCase().replaceAll(' ', '-')}}">
+  <span routerLink="/toode/{{toode.nimi.toLowerCase().replaceAll(' ', '-')}}">
     {{ toode.nimi }} hinnaga {{ toode.hind }} €
   </span>
   <button (click)="lisaOstukorvi(toode)">Lisa ostukorvi</button>

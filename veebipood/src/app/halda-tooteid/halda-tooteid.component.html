@@ -1,6 +1,15 @@
-<p>halda-tooteid works!</p>
-
 <!-- 3. tee HTML kuvamaks välja ngFor abil kõik tooted
 
 <button routerLink="muuda/{{element.nimi.toLowerCase().replace(' ', '-')}}">MUUDA</button>
 -->
+
+<div *ngFor="let toode of tooted">
+  <div>{{ toode.nimi }}</div>
+  <div>{{ toode.hind }}</div>
+  <button routerLink="/muuda/{{toode.nimi.toLowerCase().replace(' ', '-')}}">Muuda</button>
+  <button (click)="kustuta(toode)">Kustuta</button>
+</div>
+
+<!-- routerLink="/muuda"   ===>  localhost:4200/muuda   -->
+
+<!-- routerLink="muuda"  kontroll mis lehel olen (localhost:4200/halda) ===>  localhost:4200/halda/muuda   -->

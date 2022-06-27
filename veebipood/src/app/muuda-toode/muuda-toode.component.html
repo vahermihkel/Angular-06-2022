@@ -1,3 +1,14 @@
 <p>muuda-toode works!</p>
 
 <!-- 6. kuvan esialgu välja nagu yksik-toote lehel HTMLs -->
+
+<div>{{ leitudToode.nimi }}</div>
+<div>{{ leitudToode.hind }}</div>
+
+<form (ngSubmit)="muuda()" [formGroup]="vorm">
+  <label>Toote nimi</label> <br>
+  <input formControlName="nimi" type="text" required> <br>
+  <label>Toote hind</label> <br>
+  <input formControlName="hind" type="number" required> <br>
+  <button [disabled]="vorm.invalid">Sisesta</button> <br>
+</form>

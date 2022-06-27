@@ -1,0 +1,16 @@
+<div *ngFor="let k of keskused">
+  <div>Keskus: {{k.nimi}}</div>
+  <div>Telefon: {{k.tel}}</div>
+  <div>Aadress: {{k.aadress}}</div>
+  <button>Muuda -- kodus</button>
+  <button>Kustuta -- kodus</button>
+</div>
+
+<!-- 1. muuda-toode fail
+2. seos app-routingus   muuda-pood/:dmawdnqwkjdnqwk
+3. muuda buttoni sees routerLink="     {{k.nimi}}"
+4. vahekontroll, kas saab igale tootele vajutada ja läheb muuda-toode works! lehele
+5. muuda-toode .ts failis esimesena võtta URL-st saadu .split("muuda-pood/")[1] abil
+6. võtta kõik poed localStorage-st alla .find abil üles leida
+7. HTML-s [formGroup] <- seda ei pea, impordid .ts-s: new FormGroup, new FormControl
+-->

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AvalehtComponent } from './avaleht/avaleht.component';
+import { HaldaPoodeComponent } from './halda-poode/halda-poode.component';
 import { HaldaTooteidComponent } from './halda-tooteid/halda-tooteid.component';
 import { KodulehtComponent } from './koduleht/koduleht.component';
 import { LisaKeskusComponent } from './lisa-keskus/lisa-keskus.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: "lisa-keskus", component: LisaKeskusComponent },
   { path: "muuda/:nimi", component: MuudaToodeComponent },
   { path: "halda-tooteid", component: HaldaTooteidComponent },
+  { path: "halda-poode", component: HaldaPoodeComponent },
 ];
 
 @NgModule({
