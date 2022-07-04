@@ -1,0 +1,14 @@
+{
+  "home": {
+    "add-cart-button": "Add to cart"
+  },
+  "add-product": {
+    "img-address": "Image address",
+    "name": "Name",
+    "price": "Price"
+  },
+  "navbar": {
+    "admin-button": "To admin view",
+    "cart-button": "To cart"
+  }
+}

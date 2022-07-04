@@ -3,5 +3,10 @@
   <img src="{{ product.imgSrc }}" alt="">
   <div>{{ product.name }}</div>
   <div>{{ product.price }} €</div>
-  <button (click)="addToCart(product)">Lisa ostukorvi</button>
+  <button (click)="addToCart(product)">{{'home.add-cart-button' | translate}}</button>
 </div>
+
+<lib-toastify-toast-container 
+  [position]=" 'bottom-right' "
+  [autoClose]=" 3000 "
+></lib-toastify-toast-container>

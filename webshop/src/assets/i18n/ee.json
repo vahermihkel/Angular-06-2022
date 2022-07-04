@@ -1,0 +1,14 @@
+{
+  "home": {
+    "add-cart-button": "Lisa ostukorvi"
+  },
+  "add-product": {
+    "img-address": "Pildi aadress",
+    "name": "Nimi",
+    "price": "Hind"
+  },
+  "navbar": {
+    "admin-button": "Admin vaatesse",
+    "cart-button": "Ostukorvi"
+  }
+}

@@ -11,9 +11,9 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "ostukorv", component: CartComponent },
   { path: "admin", component: AdminHomeComponent },
-  { path: "admin/add-product", component: AddProductComponent },
-  { path: "admin/edit-product", component: EditProductComponent },
-  { path: "admin/view-products", component: ViewProductsComponent },
+  { path: "admin/lisa-toode", component: AddProductComponent },
+  { path: "admin/muuda", component: EditProductComponent },
+  { path: "admin/halda-tooteid", component: ViewProductsComponent },
   // { path: "HILJEM__KODUS__", component: SingleProductComponent },
 ];
 

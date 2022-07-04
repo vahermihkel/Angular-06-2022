@@ -12,4 +12,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(form: any) {
+    console.log(form.value);
+  }
 }
