@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
+  // nagu üksikul tootel
 
   constructor() { }
 
