@@ -1,3 +1,30 @@
-<p>edit-product works!</p>
-
-<!-- kuvage toode välja -->
+<div *ngIf="product">
+  <!-- a-form    ngForm          a-form     formGroup-->     
+  <form (ngSubmit)="onSubmit()" [formGroup]="editProductFrom">
+    <label>ID</label> <br>
+    <input formControlName="id" type="number" required> <br>
+    <label>Nimi</label> <br>
+    <input formControlName="name" type="text" required> <br>
+    <label>Kategooria</label> <br>
+    <input formControlName="category" type="text" required> <br>
+    <button type="button" (click)="openInfo()">?</button>
+    <label>Pildi aadress</label> <br>
+    <div *ngIf="infoOpen">Pilt peab olema http(s):// kujul ja lõppema .png / .jpg või .jpeg</div>
+    <input formControlName="imgSrc" type="text" required> <br>
+    <label>Kirjeldus</label> <br>
+    <input formControlName="description" type="text" required> <br>
+    <label>Hind</label> <br>
+    <input formControlName="price" type="number" required> <br>
+    <label>Aktiivsus</label> <br>
+    <input formControlName="isActive" type="checkbox" required> <br>
+    <button type="submit">Muuda toode</button>
+  </form>
+  <!-- app.module.ts faili ja imports: [ xModule, yModule, zModule, ReactiveFormsModule] -->
+  <!-- <img src="{{ product.imgSrc }}" alt="">
+  <div>{{ product.id }}</div>
+  <div>{{ product.name }}</div>
+  <div>{{ product.category }}</div>
+  <div>{{ product.description }}</div>
+  <div>{{ product.price }}</div>
+  <div>{{ product.isActive }}</div> -->
+</div>

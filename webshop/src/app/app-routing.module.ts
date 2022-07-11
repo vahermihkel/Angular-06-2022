@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: "ostukorv", component: CartComponent },
   { path: "admin", component: AdminHomeComponent },
   { path: "admin/lisa-toode", component: AddProductComponent },
-  { path: "admin/muuda", component: EditProductComponent },
+  { path: "admin/muuda/:id", component: EditProductComponent },
   { path: "admin/halda-tooteid", component: ViewProductsComponent },
   { path: "toode/:id", component: SingleProductComponent },
 ];

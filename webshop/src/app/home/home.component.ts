@@ -50,7 +50,8 @@ export class HomeComponent implements OnInit {
 // Muuda Toode   SingleProduct järgi, [formGroup]
 // Lisa Toode    eesti keelse järgi, ngForm
 // ID kontroll   lisamisel ja muutmisel kontrollitakse, kas kellelgi on sama ID
-// Toodete haldamisel otsing   [  me   ]   240
+// Toodete haldamisel otsing   [  me   ]   240 
+
 // Avalehel kategooriad - vajutad kategooria peale, näitab ainult selle kategooria tooteid
 // Kategooriate valimine Dropdown menüüst kui lisan või muudan
 // Kategooriad ka andmebaasi - võimaldame kategooriaid lisada, vaadata, kustutada
