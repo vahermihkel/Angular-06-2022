@@ -1,3 +1,9 @@
+<div>Kokku on {{ products.length }} toodet</div>
+<div [ngClass]="{'active-category': selectedCategory === 'all'}" (click)="selectCategory('all')">Kõik kategooriad</div>
+<div [ngClass]="{'active-category': selectedCategory === category}" (click)="selectCategory(category)" *ngFor="let category of categories">
+  {{ category }}
+</div>
+
 <button (click)="sortAZ()">Sorteeri A-Z</button>
 <button (click)="sortZA()">Sorteeri Z-A</button>
 <button (click)="sortPriceAsc()">Sorteeri hind kasvavalt</button>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-view-products',
@@ -7,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-products.component.css']
 })
 export class ViewProductsComponent implements OnInit {
-  products: any[] = [];
-  private originalProducts: any[] = [];
+  products: Product[] = [];
+  private originalProducts: Product[] = [];
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
-  searchedProduct: any;
+  searchedProduct!: string;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>(this.productDbUrl).subscribe(productsFromDb => {
+    this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
       this.products = productsFromDb;
       this.originalProducts = productsFromDb;
     });
@@ -39,7 +40,7 @@ export class ViewProductsComponent implements OnInit {
     );
   }
 
-  deleteProduct(product: any) {
+  deleteProduct(product: Product) {
     // otsin üles järjekorranumbri
     const index = this.products.indexOf(product);
 

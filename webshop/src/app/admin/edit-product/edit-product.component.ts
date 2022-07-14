@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-edit-product',
@@ -9,10 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  private products: any[] = [];
-  product: any;
+  private products: Product[] = [];
+  product!: Product;
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
-  editProductFrom: any; // loodud typescript poolel
+  editProductFrom!: FormGroup; // loodud typescript poolel
   infoOpen = false;
 
   constructor(private route: ActivatedRoute, 
@@ -23,18 +24,22 @@ export class EditProductComponent implements OnInit {
     // const productId = window.location.href.split("muuda-toode/")[1]
     //                        /muuda/:id
     const productId = this.route.snapshot.paramMap.get("id");
-    this.http.get<any[]>(this.productDbUrl).subscribe(productsFromDb => {
+    this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
       this.products = productsFromDb;
-      this.product = this.products.find(element => Number(element.id) === Number(productId));
-      this.editProductFrom = new FormGroup({
-        id: new FormControl(this.product.id),
-        name: new FormControl(this.product.name),
-        category: new FormControl(this.product.category),
-        imgSrc: new FormControl(this.product.imgSrc),
-        description: new FormControl(this.product.description),
-        price: new FormControl(this.product.price),
-        isActive: new FormControl(this.product.isActive)
-      })
+      const productFound = this.products.find(element => Number(element.id) === Number(productId));
+      if (productFound !== undefined) {
+        this.product = productFound;
+        this.editProductFrom = new FormGroup({
+          id: new FormControl(this.product.id),
+          name: new FormControl(this.product.name),
+          category: new FormControl(this.product.category),
+          imgSrc: new FormControl(this.product.imgSrc),
+          description: new FormControl(this.product.description),
+          price: new FormControl(this.product.price),
+          isActive: new FormControl(this.product.isActive)
+        })
+      }
+      
       });
   }
 
@@ -47,6 +52,7 @@ export class EditProductComponent implements OnInit {
     const index = this.products.indexOf(this.product);
    
     // asendan products muutujast
+    // [][] = {};
     this.products[index] = this.editProductFrom.value;
 
     // asendan ära kõik tooted andmebaasis PUT abil

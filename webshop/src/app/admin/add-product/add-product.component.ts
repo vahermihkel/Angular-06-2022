@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-add-product',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  private products: any[] = [];
+  private products: Product[] = [];
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   buttonDisabled = true;
   message = "";
@@ -17,7 +19,7 @@ export class AddProductComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>(this.productDbUrl).subscribe(productsFromDb => {
+    this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
       this.products = productsFromDb;
     })
   }
@@ -43,7 +45,7 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  onSubmit(form: any) {
+  onSubmit(form: NgForm) {
     console.log(form.value);
 
     // asendan products muutujast

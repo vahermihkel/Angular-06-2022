@@ -2,11 +2,16 @@
 <div>KUI ON OSTUKORVI TÜHI, SIIS NÄITA SIIN PILTI (ngIf)</div>
 
 <div>{{ cart.length }} tk</div>
-
-<div *ngFor="let product of cart">
-  <img src="{{ product.imgSrc }}" alt="">
-  <div>{{ product.name }}</div>
-  <div>{{ product.price }} €</div>
+<!-- {product: {imgSrc: "", name: "", price: ""}, quantity: 2} -->
+<div *ngFor="let cartProduct of cart">
+  <img src="{{ cartProduct.product.imgSrc }}" alt="">
+  <div>{{ cartProduct.product.name }}</div>
+  <div>{{ cartProduct.product.price }} €</div>
+  <button (click)="decreaseQuantity(cartProduct)">-</button>
+  <div>{{ cartProduct.quantity }} tk</div>
+  <button (click)="increaseQuantity(cartProduct)">+</button>
+  <div>{{ (cartProduct.product.price * cartProduct.quantity).toFixed(2) }} €</div>
+  <button (click)="removeProduct(cartProduct)">X</button>
 </div>
 
-<div>KOGUSUMMA -- KOJU</div>
+<div>{{ cartSum.toFixed(2) }}</div>
