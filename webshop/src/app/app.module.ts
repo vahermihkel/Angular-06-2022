@@ -18,7 +18,10 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
+import { ToastService, AngularToastifyModule } from 'angular-toastify';
+import { ProductPricePipe } from './pipes/product-price.pipe';
+import { ShortenDescriptionPipe } from './pipes/shorten-description.pipe';
+import { CategoryComponent } from './admin/category/category.component'; 
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { ToastService, AngularToastifyModule } from 'angular-toastify';
     ViewProductsComponent,
     AdminHomeComponent,
     SingleProductComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductPricePipe,
+    ShortenDescriptionPipe,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./view-products.component.css']
 })
 export class ViewProductsComponent implements OnInit {
+  descriptionLength = 10;
   products: Product[] = [];
   private originalProducts: Product[] = [];
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";

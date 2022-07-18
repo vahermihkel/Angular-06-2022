@@ -14,13 +14,22 @@ export class AddProductComponent implements OnInit {
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   buttonDisabled = true;
   message = "";
+  categories: {id: number, name: string}[] = [];
+  private categoryDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
   constructor(private http: HttpClient, 
     private router: Router) { }
 
   ngOnInit(): void {
     this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
-      this.products = productsFromDb;
+      if (productsFromDb) {
+        this.products = productsFromDb;
+      }
+    })
+    this.http.get<{id: number, name: string}[]>(this.categoryDbUrl).subscribe(categoriesFromDb => {
+      if (categoriesFromDb) {
+        this.categories = categoriesFromDb;
+      }
     })
   }
 

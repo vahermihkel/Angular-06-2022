@@ -3,15 +3,17 @@
 
 <div>{{ cart.length }} tk</div>
 <!-- {product: {imgSrc: "", name: "", price: ""}, quantity: 2} -->
-<div *ngFor="let cartProduct of cart">
-  <img src="{{ cartProduct.product.imgSrc }}" alt="">
-  <div>{{ cartProduct.product.name }}</div>
-  <div>{{ cartProduct.product.price }} €</div>
-  <button (click)="decreaseQuantity(cartProduct)">-</button>
-  <div>{{ cartProduct.quantity }} tk</div>
-  <button (click)="increaseQuantity(cartProduct)">+</button>
-  <div>{{ (cartProduct.product.price * cartProduct.quantity).toFixed(2) }} €</div>
-  <button (click)="removeProduct(cartProduct)">X</button>
+<div class="cart-product" *ngFor="let cartProduct of cart">
+  <img class="product-img" src="{{ cartProduct.product.imgSrc }}" alt="">
+  <div class="product-name">{{ cartProduct.product.name }}</div>
+  <div class="product-price">{{ cartProduct.product.price | productPrice }}</div>
+  <div class="quantity-controls">
+    <img class="product-button" src="assets/minus.png" (click)="decreaseQuantity(cartProduct)" />
+    <div class="product-quantity">{{ cartProduct.quantity }} tk</div>
+    <img class="product-button" src="assets/plus.png" (click)="increaseQuantity(cartProduct)" />
+  </div>
+  <div class="product-total">{{ (cartProduct.product.price * cartProduct.quantity) | productPrice }}</div>
+  <img class="product-button" src="assets/delete.png" (click)="removeProduct(cartProduct)">
 </div>
 
-<div>{{ cartSum.toFixed(2) }}</div>
+<div class="cart-sum">{{ cartSum | productPrice }}</div>

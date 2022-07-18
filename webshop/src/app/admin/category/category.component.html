@@ -1,0 +1,11 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <label>Kategooria ID</label> <br>
+    <input ngModel name="id" type="number"> <br>
+    <label>Kategooria nimi</label> <br>
+    <input ngModel name="name" type="text"> <br>
+    <button>Sisesta kategooria</button>
+</form>
+
+<div *ngFor="let category of categories">
+  <div>{{ category.name }}</div>
+</div>
