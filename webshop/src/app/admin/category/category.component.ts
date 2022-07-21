@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -10,12 +11,11 @@ import { Router } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
   categories: {id: number, name: string}[] = [];
-  private categoryDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
-  constructor(private http: HttpClient) { }
+  constructor(private categoryService: CategoryService) { }
 
     ngOnInit(): void {
-      this.http.get<{id: number, name: string}[]>(this.categoryDbUrl).subscribe(categoriesFromDb => {
+      this.categoryService.getCategoriesFromDb().subscribe(categoriesFromDb => {
         if (categoriesFromDb) {
           this.categories = categoriesFromDb;
         }
@@ -24,7 +24,7 @@ export class CategoryComponent implements OnInit {
 
     onSubmit(form: NgForm) {
       this.categories.push(form.value);
-      this.http.put(this.categoryDbUrl, this.categories).subscribe();
+      this.categoryService.saveCategoriesToDb(this.categories).subscribe();
     }
 
     // kustutamine - KODUS
@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
       this.categories.splice(index,1);
   
       // asendan ära kõik tooted andmebaasis PUT abil
-      this.http.put(this.categoryDbUrl, this.categories).subscribe();
+      this.categoryService.saveCategoriesToDb(this.categories).subscribe();
     }
 }
 

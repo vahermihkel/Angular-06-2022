@@ -16,4 +16,8 @@
   <img class="product-button" src="assets/delete.png" (click)="removeProduct(cartProduct)">
 </div>
 
+<select>
+  <option *ngFor="let pm of parcelMachines">{{pm.NAME}}</option>
+</select>
+
 <div class="cart-sum">{{ cartSum | productPrice }}</div>

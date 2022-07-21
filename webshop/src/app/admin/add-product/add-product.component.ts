@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -11,22 +13,22 @@ import { Product } from 'src/app/models/product.model';
 })
 export class AddProductComponent implements OnInit {
   private products: Product[] = [];
-  private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   buttonDisabled = true;
   message = "";
   categories: {id: number, name: string}[] = [];
-  private categoryDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
-  constructor(private http: HttpClient, 
-    private router: Router) { }
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
+    this.productService.getProductsFromDb().subscribe(productsFromDb => {
       if (productsFromDb) {
         this.products = productsFromDb;
       }
     })
-    this.http.get<{id: number, name: string}[]>(this.categoryDbUrl).subscribe(categoriesFromDb => {
+    this.categoryService.getCategoriesFromDb().subscribe(categoriesFromDb => {
       if (categoriesFromDb) {
         this.categories = categoriesFromDb;
       }
@@ -63,7 +65,7 @@ export class AddProductComponent implements OnInit {
     this.products.push(form.value);
 
     // asendan ära kõik tooted andmebaasis PUT abil
-    this.http.put(this.productDbUrl, this.products).subscribe(() => {
+    this.productService.saveProductsToDb(this.products).subscribe(() => {
       // suunamine /admin/halda-tooteid (HTMLs routerLink="/admin/halda-tooteid")
       this.router.navigateByUrl("/admin/halda-tooteid");
     });

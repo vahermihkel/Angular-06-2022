@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -16,14 +17,14 @@ export class EditProductComponent implements OnInit {
   editProductFrom!: FormGroup; // loodud typescript poolel
   infoOpen = false;
   categories: {id: number, name: string}[] = [];
-  private categoryDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
   constructor(private route: ActivatedRoute, 
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.http.get<{id: number, name: string}[]>(this.categoryDbUrl).subscribe(categoriesFromDb => {
+    this.categoryService.getCategoriesFromDb().subscribe(categoriesFromDb => {
       if (categoriesFromDb) {
         this.categories = categoriesFromDb;
       }

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-product.model';
+import { ParcelMachineService } from '../services/parcel-machine.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,10 +11,15 @@ import { CartProduct } from '../models/cart-product.model';
 export class CartComponent implements OnInit {
   cart: CartProduct[] = [];
   cartSum = 0;
+  parcelMachines: any = [];
 
-  constructor() { }
+  constructor(private parcelMachineService: ParcelMachineService) { }
 
   ngOnInit(): void {
+    this.parcelMachineService.getParcelMachines().subscribe(parcelMachines => {
+      this.parcelMachines = parcelMachines.filter(element => element.A0_NAME === "EE");
+    })
+
     const cartSS = sessionStorage.getItem("cart");
     if (cartSS !== null) {
       this.cart = JSON.parse(cartSS);

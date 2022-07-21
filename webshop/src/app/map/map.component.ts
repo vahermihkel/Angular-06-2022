@@ -25,8 +25,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ 39.8282, -98.5795 ],
-      zoom: 3
+      center: [ 59.4370, 24.7447 ],
+      zoom: 12
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -37,8 +37,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     tiles.addTo(this.map);
 
-    const marker = L.marker([39.8282, -98.5795]);
+    const marker = L.marker([59.4215, 24.7943]);
     marker.addTo(this.map);
+    marker.bindPopup("Ülemiste keskus<br>Avatud 9-21");
+
+    const marker2 = L.marker([59.4271, 24.7238]);
+    marker2.addTo(this.map);
+    marker2.bindPopup("Kristiine keskus<br>Avatud 8-20");
   }
 
   constructor() { } // constructor failide ühendamiseks: 
@@ -53,5 +58,17 @@ export class MapComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void { // käimaminemise funktsioon -> läheb käima vahetult PÄRAST HTMLi
     this.initMap();
   } 
+
+  onZoom() {
+    this.map.setView(L.latLng([59.4370, 24.7447]), 12);
+  }
+
+  onZoomYl() {
+    this.map.setView(L.latLng([59.4215, 24.7943]), 13);
+  }
+
+  onZoomKr() {
+    this.map.setView(L.latLng([59.4271, 24.7238]), 13);
+  }
 
 }
