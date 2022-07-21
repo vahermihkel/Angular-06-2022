@@ -15,12 +15,19 @@ export class EditProductComponent implements OnInit {
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   editProductFrom!: FormGroup; // loodud typescript poolel
   infoOpen = false;
+  categories: {id: number, name: string}[] = [];
+  private categoryDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
   constructor(private route: ActivatedRoute, 
     private http: HttpClient,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.http.get<{id: number, name: string}[]>(this.categoryDbUrl).subscribe(categoriesFromDb => {
+      if (categoriesFromDb) {
+        this.categories = categoriesFromDb;
+      }
+    });
     // const productId = window.location.href.split("muuda-toode/")[1]
     //                        /muuda/:id
     const productId = this.route.snapshot.paramMap.get("id");

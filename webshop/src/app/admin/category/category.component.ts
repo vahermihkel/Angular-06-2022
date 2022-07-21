@@ -28,4 +28,18 @@ export class CategoryComponent implements OnInit {
     }
 
     // kustutamine - KODUS
+    deleteCategory(category: {id: number, name: string}) {
+      // otsin üles järjekorranumbri
+      const index = this.categories.indexOf(category);
+  
+      // kustutan products muutujast
+      this.categories.splice(index,1);
+  
+      // asendan ära kõik tooted andmebaasis PUT abil
+      this.http.put(this.categoryDbUrl, this.categories).subscribe();
+    }
 }
+
+// 1. Udemy projektid / Koolitustel projektid / Youtubes
+// 2. Teistest failidest kopeerida
+// 3. Googeldamine - how to delete from array Angular

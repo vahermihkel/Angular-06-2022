@@ -97,14 +97,15 @@ export class HomeComponent implements OnInit {
 // Ostukorv - kogustega
 // Ostukorvi kujundus
 // Pipes
-
 // Kategooriate valimine Dropdown menüüst kui lisan või muudan
-
 // Kategooriad ka andmebaasi - võimaldame kategooriaid lisada, vaadata, kustutada
+
 // Kaardirakenduse - võimaldaks vaadata meie poode Eesti kaardil (nagu G Maps - Leaflet)
 // Omniva pakiautomaadid kasutusele
 // E-maili saatmine - tagasiside / tellimus on tehtud
 // Number Navbari
+
+// 70 ak/h   /  4   17.5
 
 // Nortali proovitöö e-mailile
 
@@ -113,3 +114,13 @@ export class HomeComponent implements OnInit {
 // ??????
 // Piltide üleslaadimist Firebase
 // Karusell-galerii kasutuselevõtt
+
+// Nortali proovitöö Google Drive-i -> e-maili
+// 2021.aasta TalveÜlikooli pääsemiseks
+
+// E vaatame 1.st punkti
+
+// 1. Mõne kodutöö edasiarendus
+// 2. Webshop edasiarendus
+// 3. Projekt internetist -> Udemy'st/Youtube'st
+// 4. Ise väljamõeldud projekt

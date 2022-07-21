@@ -21,7 +21,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ToastService, AngularToastifyModule } from 'angular-toastify';
 import { ProductPricePipe } from './pipes/product-price.pipe';
 import { ShortenDescriptionPipe } from './pipes/shorten-description.pipe';
-import { CategoryComponent } from './admin/category/category.component'; 
+import { CategoryComponent } from './admin/category/category.component';
+import { ShopsComponent } from './shops/shops.component';
+import { MapComponent } from './map/map.component'; 
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { CategoryComponent } from './admin/category/category.component';
     NavbarComponent,
     ProductPricePipe,
     ShortenDescriptionPipe,
-    CategoryComponent
+    CategoryComponent,
+    ShopsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

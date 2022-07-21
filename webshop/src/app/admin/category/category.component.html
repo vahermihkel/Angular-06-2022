@@ -7,5 +7,5 @@
 </form>
 
 <div *ngFor="let category of categories">
-  <div>{{ category.name }}</div>
+  <div>{{ category.name }} <button (click)="deleteCategory(category)">x</button> </div>
 </div>
