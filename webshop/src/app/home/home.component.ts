@@ -10,14 +10,16 @@ import { Product } from '../models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+
   // 1. võtta kõikide toodete küljest kategooria   [{}, {}, {}].map()  -- ["", "", ""]
   // 2. võtta korduvad kategooriad ära ["", ""]
   // 3. kuvame HTMLs ngFor abil
 
-  kuupaev = new Date();
-  protsent = 0.5;
-  number = 123123;
-  tekst = "elas Metsas mutionu";
+  // kuupaev = new Date();
+  // protsent = 0.5;
+  // number = 123123;
+  // tekst = "elas Metsas mutionu";
 
   selectedCategory = "all";
   categories: string[] = [];
@@ -29,6 +31,25 @@ export class HomeComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.slides[0] = {
+      id: 0,
+      src: './assets/img/angular.jpg',
+      title: 'First slide',
+      subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+    };
+    this.slides[1] = {
+      id: 1,
+      src: './assets/img/react.jpg',
+      title: 'Second slide',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    }
+    this.slides[2] = {
+      id: 2,
+      src: './assets/img/vue.jpg',
+      title: 'Third slide',
+      subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+    }
+  
     this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
       this.products = productsFromDb;
       this.originalProducts = productsFromDb;
@@ -65,7 +86,12 @@ export class HomeComponent implements OnInit {
       cart[index].quantity = cart[index].quantity + 1;
     } else {
       // lisan juurde
-      cart.push({product: productClicked, quantity: 1})
+      const pmIndex = cart.findIndex(element => element.product.id === 1);
+      if (pmIndex >= 0) {
+        cart.splice(cart.length-1, 0, {product: productClicked, quantity: 1});
+      } else {
+        cart.push({product: productClicked, quantity: 1})
+      }
     }
     //cart.push(productClicked); // [{1},{1}] --> [{product: {1}, quantity: 1}]
     sessionStorage.setItem("cart", JSON.stringify(cart));
@@ -99,9 +125,9 @@ export class HomeComponent implements OnInit {
 // Pipes
 // Kategooriate valimine Dropdown menüüst kui lisan või muudan
 // Kategooriad ka andmebaasi - võimaldame kategooriaid lisada, vaadata, kustutada
-
 // Kaardirakenduse - võimaldaks vaadata meie poode Eesti kaardil (nagu G Maps - Leaflet)
 // Omniva pakiautomaadid kasutusele
+
 // E-maili saatmine - tagasiside / tellimus on tehtud
 // Number Navbari
 

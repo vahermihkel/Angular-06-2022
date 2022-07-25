@@ -1,23 +1,34 @@
-<button>TÜHJENDA -- KOJU</button>
-<div>KUI ON OSTUKORVI TÜHI, SIIS NÄITA SIIN PILTI (ngIf)</div>
+<button *ngIf="cart.length > 0" (click)="emptyCart()">TÜHJENDA</button>
+<div *ngIf="cart.length === 0">KUI ON OSTUKORVI TÜHI, SIIS NÄITA SIIN PILTI (ngIf)</div>
 
-<div>{{ cart.length }} tk</div>
+<div *ngIf="cart.length > 0">{{ cart.length }} tk</div>
 <!-- {product: {imgSrc: "", name: "", price: ""}, quantity: 2} -->
 <div class="cart-product" *ngFor="let cartProduct of cart">
   <img class="product-img" src="{{ cartProduct.product.imgSrc }}" alt="">
   <div class="product-name">{{ cartProduct.product.name }}</div>
   <div class="product-price">{{ cartProduct.product.price | productPrice }}</div>
   <div class="quantity-controls">
-    <img class="product-button" src="assets/minus.png" (click)="decreaseQuantity(cartProduct)" />
+    <img class="product-button" 
+      [ngClass]="{'button-disabled': cartProduct.product.id === 1}" 
+      src="assets/minus.png" 
+      (click)="cartProduct.product.id !== 1 && decreaseQuantity(cartProduct)" />
     <div class="product-quantity">{{ cartProduct.quantity }} tk</div>
-    <img class="product-button" src="assets/plus.png" (click)="increaseQuantity(cartProduct)" />
+    <img class="product-button" 
+      [ngClass]="{'button-disabled': cartProduct.product.id === 1}" 
+      src="assets/plus.png" 
+      (click)="cartProduct.product.id !== 1 && increaseQuantity(cartProduct)" />
   </div>
   <div class="product-total">{{ (cartProduct.product.price * cartProduct.quantity) | productPrice }}</div>
-  <img class="product-button" src="assets/delete.png" (click)="removeProduct(cartProduct)">
+  <img class="product-button" 
+      [ngClass]="{'button-disabled': cartProduct.product.id === 1}" 
+      src="assets/delete.png" 
+      (click)="cartProduct.product.id !== 1 && removeProduct(cartProduct)">
 </div>
 
-<select>
+<select (change)="selectParcelMachine()" [(ngModel)]="selectedPM" *ngIf="cart.length > 0 && selectedPM === ''">
+  <option value="" disabled>Vali pakiautomaat</option>
   <option *ngFor="let pm of parcelMachines">{{pm.NAME}}</option>
 </select>
+<div *ngIf="selectedPM !== ''">{{ selectedPM }} <button (click)="deleteSelectedPM()">x</button> </div>
 
-<div class="cart-sum">{{ cartSum | productPrice }}</div>
+<div *ngIf="cart.length > 0" class="cart-sum">{{ cartSum | productPrice }}</div>

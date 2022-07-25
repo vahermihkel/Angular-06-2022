@@ -46,3 +46,12 @@
 }
 
 .cart-sum {}
+
+.button-disabled {
+  opacity: 0.3;
+}
+
+.button-disabled:hover {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

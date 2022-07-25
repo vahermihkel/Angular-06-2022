@@ -1,0 +1,11 @@
+<form #form="ngForm">
+  <label>Hinnang:</label> <br>
+  <input ngModel name="stars" min="1" max="5" type="range"> <br>
+  <label>Nimi:</label> <br>
+  <input ngModel name="name" type="text"> <br>
+  <label>Email:</label> <br>
+  <input ngModel name="email" type="text"> <br>
+  <label>Tagasiside:</label> <br>
+  <textarea ngModel name="message"></textarea> <br>
+  <button (click)="sendEmail(form)">Saada e-mail</button>
+</form>
