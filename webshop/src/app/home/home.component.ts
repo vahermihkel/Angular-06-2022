@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'angular-toastify';
 import { CartProduct } from '../models/cart-product.model';
 import { Product } from '../models/product.model';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,12 @@ import { Product } from '../models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+  slides: any[] = [
+    {src: 'https://picsum.photos/id/237/500/300', title: '1', subtitle: ''}, 
+    {src: 'https://picsum.photos/id/337/500/300', title: '2', subtitle: ''}, 
+    {src: 'https://picsum.photos/id/437/500/300', title: '3', subtitle: ''}
+  ];
+  isLoading = false;
 
   // 1. võtta kõikide toodete küljest kategooria   [{}, {}, {}].map()  -- ["", "", ""]
   // 2. võtta korduvad kategooriad ära ["", ""]
@@ -28,29 +34,13 @@ export class HomeComponent implements OnInit {
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
   constructor(private _toastService: ToastService, 
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.slides[0] = {
-      id: 0,
-      src: './assets/img/angular.jpg',
-      title: 'First slide',
-      subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-    };
-    this.slides[1] = {
-      id: 1,
-      src: './assets/img/react.jpg',
-      title: 'Second slide',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    }
-    this.slides[2] = {
-      id: 2,
-      src: './assets/img/vue.jpg',
-      title: 'Third slide',
-      subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-    }
-  
+    this.isLoading = true;
     this.http.get<Product[]>(this.productDbUrl).subscribe(productsFromDb => {
+      this.isLoading = false;
       this.products = productsFromDb;
       this.originalProducts = productsFromDb;
       this.categories = this.products.map(element => element.category);
@@ -96,6 +86,7 @@ export class HomeComponent implements OnInit {
     //cart.push(productClicked); // [{1},{1}] --> [{product: {1}, quantity: 1}]
     sessionStorage.setItem("cart", JSON.stringify(cart));
     this._toastService.success('Edukalt ostukorvi lisatud');
+    this.productService.cartChanged.next(true);
   }
 
   sortAZ() {
@@ -144,9 +135,23 @@ export class HomeComponent implements OnInit {
 // Nortali proovitöö Google Drive-i -> e-maili
 // 2021.aasta TalveÜlikooli pääsemiseks
 
-// E vaatame 1.st punkti
+// E
+// Proovitöö:
+// 1. andmebaasist kättesaamine -->
+// {võti: []} ngFor
+// 2. API endpointid pole valmis --> 
+// lihtsalt push ja lihtsalt splice, mitte andmebaasi aadressile
+// 3. kuidas lisada "name" juurde -->
+// first_name ja last_name
+// 4. validators tegemine
+
+// Spinner 
+// Not Found
 
 // 1. Mõne kodutöö edasiarendus
 // 2. Webshop edasiarendus
 // 3. Projekt internetist -> Udemy'st/Youtube'st
 // 4. Ise väljamõeldud projekt
+
+// E 01.08  9.00-12.15 Nortali proovitööd + küsin projektide
+// E 15.08  9.00-10.30 Projekti esitlemine

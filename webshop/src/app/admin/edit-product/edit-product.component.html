@@ -1,6 +1,6 @@
 <div *ngIf="product">
   <!-- a-form    ngForm          a-form     formGroup-->     
-  <form (ngSubmit)="onSubmit()" [formGroup]="editProductFrom">
+  <form (ngSubmit)="onSubmit()" [formGroup]="editProductForm">
     <label>ID</label> <br>
     <input formControlName="id" type="number" required> <br>
     <label>Nimi</label> <br>
@@ -20,7 +20,7 @@
     <input formControlName="price" type="number" required> <br>
     <label>Aktiivsus</label> <br>
     <input formControlName="isActive" type="checkbox" required> <br>
-    <button type="submit">Muuda toode</button>
+    <button type="submit" [disabled]="editProductForm.invalid">Muuda toode</button>
   </form>
   <!-- app.module.ts faili ja imports: [ xModule, yModule, zModule, ReactiveFormsModule] -->
   <!-- <img src="{{ product.imgSrc }}" alt="">

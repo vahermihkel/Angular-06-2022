@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -14,7 +14,7 @@ export class EditProductComponent implements OnInit {
   private products: Product[] = [];
   product!: Product;
   private productDbUrl = "https://angular-06-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
-  editProductFrom!: FormGroup; // loodud typescript poolel
+  editProductForm!: FormGroup; // loodud typescript poolel
   infoOpen = false;
   categories: {id: number, name: string}[] = [];
 
@@ -37,13 +37,13 @@ export class EditProductComponent implements OnInit {
       const productFound = this.products.find(element => Number(element.id) === Number(productId));
       if (productFound !== undefined) {
         this.product = productFound;
-        this.editProductFrom = new FormGroup({
-          id: new FormControl(this.product.id),
-          name: new FormControl(this.product.name),
-          category: new FormControl(this.product.category),
-          imgSrc: new FormControl(this.product.imgSrc),
-          description: new FormControl(this.product.description),
-          price: new FormControl(this.product.price),
+        this.editProductForm = new FormGroup({
+          id: new FormControl(this.product.id, Validators.required),
+          name: new FormControl(this.product.name, Validators.required),
+          category: new FormControl(this.product.category, Validators.required),
+          imgSrc: new FormControl(this.product.imgSrc, [Validators.required, Validators.pattern(/^\S*$/)]),
+          description: new FormControl(this.product.description, Validators.required),
+          price: new FormControl(this.product.price, [Validators.required, Validators.pattern(/(?<=^| )\d+(\.\d+)?(?=$| )/)]),
           isActive: new FormControl(this.product.isActive)
         })
       }
@@ -61,7 +61,7 @@ export class EditProductComponent implements OnInit {
    
     // asendan products muutujast
     // [][] = {};
-    this.products[index] = this.editProductFrom.value;
+    this.products[index] = this.editProductForm.value;
 
     // asendan ära kõik tooted andmebaasis PUT abil
     this.http.put(this.productDbUrl, this.products).subscribe(() => {
